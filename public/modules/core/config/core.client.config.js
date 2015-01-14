@@ -13,6 +13,7 @@ angular.module('core')
 	.constant('USER_ROLES', {
 		all: '*',
 		user: 'user',
+		vendor: 'vendor',
 		service: 'service',
 		admin: 'admin',
 		super: 'super'
