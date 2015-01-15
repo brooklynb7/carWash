@@ -5,6 +5,7 @@
 var init = require('./config/init')(),
 	config = require('./config/config'),
 	mongoose = require('mongoose'),
+	autoIncrement = require('mongoose-auto-increment'),
 	chalk = require('chalk');
 
 /**
@@ -19,6 +20,7 @@ var db = mongoose.connect(config.db, function(err) {
 		console.log(chalk.red(err));
 	}
 });
+autoIncrement.initialize(db);
 
 // Init the express application
 var app = require('./config/express')(db);
@@ -33,4 +35,4 @@ app.listen(config.port);
 exports = module.exports = app;
 
 // Logging initialization
-console.log('MEAN.JS application started on port ' + config.port);
+console.log('Car-wash application started on port ' + config.port);

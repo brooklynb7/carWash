@@ -5,103 +5,103 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Order = mongoose.model('Order'),
+	Vendor = mongoose.model('Vendor'),
 	_ = require('lodash');
 
 /**
- * Create a Order
+ * Create a Vendor
  */
 exports.create = function(req, res) {
-	var order = new Order(req.body);
-	order.user = req.user;
+	var vendor = new Vendor(req.body);
+	vendor.user = req.user;
 
-	order.save(function(err) {
+	vendor.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(order);
+			res.jsonp(vendor);
 		}
 	});
 };
 
 /**
- * Show the current Order
+ * Show the current Vendor
  */
 exports.read = function(req, res) {
-	res.jsonp(req.order);
+	res.jsonp(req.vendor);
 };
 
 /**
- * Update a Order
+ * Update a Vendor
  */
 exports.update = function(req, res) {
-	var order = req.order ;
+	var vendor = req.vendor ;
 
-	order = _.extend(order , req.body);
+	vendor = _.extend(vendor , req.body);
 
-	order.save(function(err) {
+	vendor.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(order);
+			res.jsonp(vendor);
 		}
 	});
 };
 
 /**
- * Delete an Order
+ * Delete an Vendor
  */
 exports.delete = function(req, res) {
-	var order = req.order ;
+	var vendor = req.vendor ;
 
-	order.remove(function(err) {
+	vendor.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(order);
+			res.jsonp(vendor);
 		}
 	});
 };
 
 /**
- * List of Orders
+ * List of Vendors
  */
 exports.list = function(req, res) { 
-	Order.find().sort('-created').populate('user', 'displayName').exec(function(err, orders) {
+	Vendor.find().sort('-created').populate('user', 'displayName').exec(function(err, vendors) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(orders);
+			res.jsonp(vendors);
 		}
 	});
 };
 
 /**
- * Order middleware
+ * Vendor middleware
  */
-exports.orderByID = function(req, res, next, id) { 
-	Order.findById(id).populate('user', 'displayName').exec(function(err, order) {
+exports.vendorByID = function(req, res, next, id) { 
+	Vendor.findById(id).populate('user', 'displayName').exec(function(err, vendor) {
 		if (err) return next(err);
-		if (! order) return next(new Error('Failed to load Order ' + id));
-		req.order = order ;
+		if (! vendor) return next(new Error('Failed to load Vendor ' + id));
+		req.vendor = vendor ;
 		next();
 	});
 };
 
 /**
- * Order authorization middleware
+ * Vendor authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.order.user.id !== req.user.id) {
-		return res.status(403).send('未授权');
+	if (req.vendor.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

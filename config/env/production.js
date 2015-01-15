@@ -9,7 +9,9 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 			],
-			js: [
+			js: [				
+				'public/lib/moment/min/moment.min.js',
+				'public/lib/moment/locale/zh-cn.js',
 				'public/lib/underscore/underscore-min.js',
 				'public/lib/angular/angular.min.js',
 				'public/lib/angular-resource/angular-resource.js',

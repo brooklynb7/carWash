@@ -5,11 +5,15 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 	function($scope, $stateParams, $location, Authentication, Orders) {
 		$scope.authentication = Authentication;
 
+		$scope.orderDate = '1';
+		$scope.orderTime = '08:00';
+		$scope.washType = 1;
 		// Create new Order
 		$scope.create = function() {
 			// Create new Order object
-			var order = new Orders ({
-				name: this.name
+			var order = new Orders({
+				name: this.name,
+				mobile: this.mobile
 			});
 
 			// Redirect after save
@@ -25,11 +29,11 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 
 		// Remove existing Order
 		$scope.remove = function(order) {
-			if ( order ) { 
+			if (order) {
 				order.$remove();
 
 				for (var i in $scope.orders) {
-					if ($scope.orders [i] === order) {
+					if ($scope.orders[i] === order) {
 						$scope.orders.splice(i, 1);
 					}
 				}
@@ -58,7 +62,7 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 
 		// Find existing Order
 		$scope.findOne = function() {
-			$scope.order = Orders.get({ 
+			$scope.order = Orders.get({
 				orderId: $stateParams.orderId
 			});
 		};

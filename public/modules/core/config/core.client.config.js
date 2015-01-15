@@ -18,3 +18,6 @@ angular.module('core')
 		admin: 'admin',
 		super: 'super'
 	});
+
+moment.locale('zh-cn');
+console.log(moment().format());

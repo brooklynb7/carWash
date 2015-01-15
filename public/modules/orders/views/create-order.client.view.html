@@ -1,18 +1,59 @@
 <section data-ng-controller="OrdersController">
     <div class="page-header">
-        <h1>New Order</h1>
+        <h3>预约洗车</h3>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="name">姓名<span class="red">*</span></label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="姓名" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <label class="control-label" for="mobile">手机<span class="red">*</span></label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="mobile" id="mobile" class="form-control" placeholder="手机" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="area">所在地</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="area" id="area" class="form-control" placeholder="所在地" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="carType">车型</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="carType" id="carType" class="form-control" placeholder="车型" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >洗车模式</label>
+                    <div class="controls">
+                        <div class="btn-group">
+                            <label class="btn" data-ng-class="{'btn-primary': (washType == 1), 'btn-default': (washType == 2)}" data-ng-model="washType" btn-radio="1" novalidate>普通</label>
+                            <label class="btn" data-ng-class="{'btn-primary': (washType == 2), 'btn-default': (washType == 1)}" data-ng-model="washType" btn-radio="2" novalidate>精洗</label>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="orderTime">预约时间</label>
+                    <div class="controls">
+                        <select data-ng-model="orderDate" class="display-inline-block width-auto form-control" id="orderDate">
+                            <option value="0">今天</option>
+                            <option value="1">明天</option>
+                            <option value="2">后天</option>
+                        </select>
+                        <select data-ng-model="orderTime" class="display-inline-block width-auto form-control" id="orderTime">
+                            <option value="08:00" disabled>08:00</option>
+                            <option value="08:30">08:30</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="提交">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

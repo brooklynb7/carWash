@@ -1,11 +1,11 @@
 'use strict';
 
 // Configuring the Articles module
-angular.module('orders').run(['Menus',
-	function(Menus) {
+angular.module('orders').run(['Menus', 'USER_ROLES',
+	function(Menus, USER_ROLES) {
 		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Orders', 'orders', 'dropdown', '/orders(/create)?');
-		Menus.addSubMenuItem('topbar', 'orders', 'List Orders', 'orders');
-		Menus.addSubMenuItem('topbar', 'orders', 'New Order', 'orders/create');
+		Menus.addMenuItem('topbar', '订单管理', 'orders', 'dropdown', '/orders(/create)?', false, [USER_ROLES.admin]);
+		Menus.addSubMenuItem('topbar', 'orders', '订单列表', 'orders');
+		Menus.addSubMenuItem('topbar', 'orders', '新建订单', 'orders/create');
 	}
 ]);
