@@ -7,7 +7,8 @@
 			<h5 class="list-group-item-heading">
                 订单号: {{order.orderId}} / 名字:{{order.name}} / 手机:{{order.mobile}}
             </h5>
-            <small class="list-group-item-text" data-ng-include="'./modules/orders/views/_order-user.client.view.html'">			
+            <small class="list-group-item-text" data-ng-include="'./modules/orders/views/_order-user.client.view.html'">
+            </small>			
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!orders.$resolved || orders.length">
