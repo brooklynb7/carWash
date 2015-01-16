@@ -4,15 +4,13 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+	autoIncrement = require('mongoose-auto-increment'),
 	Schema = mongoose.Schema;
 
 /**
  * Vendor Schema
  */
-var VendorSchema = new Schema({
-	vendorId: {
-		
-	},
+var VendorSchema = new Schema({	
 	name: {
 		type: String,
 		default: '',
@@ -31,6 +29,14 @@ var VendorSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	}
+});
+
+
+VendorSchema.plugin(autoIncrement.plugin, {
+    model: 'Vendor',
+    field: 'vendorId',
+    startAt: 10000,
+    incrementBy: 1
 });
 
 mongoose.model('Vendor', VendorSchema);

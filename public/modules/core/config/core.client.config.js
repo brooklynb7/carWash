@@ -20,4 +20,3 @@ angular.module('core')
 	});
 
 moment.locale('zh-cn');
-console.log(moment().format());

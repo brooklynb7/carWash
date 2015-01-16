@@ -1,0 +1,45 @@
+<div class="form-group">
+    <label class="control-label" for="name">姓名<span class="red">*</span></label>
+    <div class="controls">
+        <input type="text" data-ng-model="order.name" id="name" class="form-control" placeholder="姓名" required>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="mobile">手机<span class="red">*</span></label>
+    <div class="controls">
+        <input type="text" data-ng-model="order.mobile" id="mobile" class="form-control" placeholder="手机" required>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="area">所在地</label>
+    <div class="controls">
+        <input type="text" data-ng-model="order.area" id="area" class="form-control" placeholder="所在地">
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="carType">车型</label>
+    <div class="controls">
+        <input type="text" data-ng-model="order.carType" id="carType" class="form-control" placeholder="车型">
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="order.carPlate">车牌</label>
+    <div class="controls">
+        <input type="text" data-ng-model="carPlate" id="carPlate" class="form-control" placeholder="车牌">
+    </div>
+</div>                
+<div class="form-group">
+    <label class="control-label" for="orderTime">预约时间</label>
+    <div class="controls">
+        <order-time></order-time>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" >洗车模式</label>
+    <div class="controls">
+        <div class="btn-group">
+            <label class="btn" data-ng-class="{'btn-primary': (order.washType == 1), 'btn-default': (order.washType == 2)}" data-ng-model="order.washType" btn-radio="1" novalidate>普通</label>
+            <label class="btn" data-ng-class="{'btn-primary': (order.washType == 2), 'btn-default': (order.washType == 1)}" data-ng-model="order.washType" btn-radio="2" novalidate>精洗</label>
+        </div>
+    </div>                    
+</div>

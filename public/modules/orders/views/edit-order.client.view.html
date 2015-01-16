@@ -1,22 +1,22 @@
 <section data-ng-controller="OrdersController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Order</h1>
+        <h3>
+            <a href="#!/orders/{{order._id}}" class="pull-left">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+            </a>
+            编辑订单: {{order.orderId}}
+        </h3>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
+                <order-form order="order" control="formControl"></order-form>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="order.name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
+                    <input type="submit" class="btn btn-default" value="提交">
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
             </fieldset>
         </form>
     </div>

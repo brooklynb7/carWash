@@ -1,0 +1,11 @@
+<select data-ng-model="orderDate" 
+		data-ng-options="m.id as m.value for m in orderDateOptions"
+		data-ng-change="changeOrderDate()"
+		class="display-inline-block width-auto form-control" 
+		id="orderDate">
+</select>
+<select data-ng-model="orderTime" 
+		data-ng-options="m.id as m.value for m in orderTimeOptions"
+		class="display-inline-block width-auto form-control" 
+		id="orderTime">
+</select>

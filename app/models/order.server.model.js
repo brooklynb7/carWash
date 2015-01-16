@@ -58,6 +58,10 @@ var OrderSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	choiceVendor: {
+		type: Schema.ObjectId,
+		ref: 'Vendor'
+	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
