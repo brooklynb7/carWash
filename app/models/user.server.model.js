@@ -79,6 +79,10 @@ var UserSchema = new Schema({
 		}],
 		default: ['user']
 	},
+	userType: {
+		type: Number,
+		default: 1
+	},
 	updated: {
 		type: Date
 	},

@@ -50,7 +50,7 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 		// Update existing Order
 		$scope.update = function() {
 			var order = $scope.order;
-			order.orderTime = $scope.formControl.getOrderDateTime();
+			//order.orderTime = $scope.formControl.getOrderDateTime();
 
 			order.$update(function() {
 				$location.path('orders/' + order._id);

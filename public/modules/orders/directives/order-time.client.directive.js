@@ -5,8 +5,10 @@ angular.module('orders').directive('orderTime', [
 		return {
 			templateUrl: './modules/orders/directives/order-time.html',
 			restrict: 'E',
-			scope: {},
-			link: function (scope, element, attrs) {				
+			scope: {
+				order: '='
+			},
+			link: function (scope, element, attrs) {	
 				var orderDateOptions =  [
 					{'id':'0','value': '今天'},
 					{'id':'1','value': '明天'},

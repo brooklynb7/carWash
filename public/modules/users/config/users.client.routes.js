@@ -1,13 +1,14 @@
 'use strict';
 
 // Setting up route
-angular.module('users').config(['$stateProvider',
-	function($stateProvider) {
+angular.module('users').config(['$stateProvider', 'USER_ROLES',
+	function($stateProvider, USER_ROLES) {
 		// Users state routing
 		$stateProvider.
 		state('users-list', {
 			url: '/users',
-			templateUrl: 'modules/users/views/list-users.client.view.html'
+			templateUrl: 'modules/users/views/list-users.client.view.html',
+			authorizedRoles: [USER_ROLES.super]
 		}).
 		state('profile', {
 			url: '/settings/profile',

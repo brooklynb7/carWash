@@ -43,14 +43,14 @@
                 <div class="form-group">
                     <label class="control-label" for="carPlate">车牌:</label>
                     {{order.carPlate}}
-                </div>                
-                <div class="form-group">
-                    <label class="control-label" for="orderTime">预约时间:</label>
-                    {{order.orderTime | date:'yyyy-MM-dd HH:mm'}}
-                </div>
+                </div>    
                 <div class="form-group">
                     <label class="control-label" >洗车模式:</label>
                     {{order.washType}}  
+                </div>            
+                <div class="form-group">
+                    <label class="control-label" for="orderTime">预约时间:</label>
+                    {{order.orderTime | date:'yyyy-MM-dd HH:mm'}}
                 </div>
             </fieldset>
         </form>
