@@ -1,6 +1,6 @@
 <section data-ng-controller="VendorsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="vendor.name"></h1>
+		<h3 data-ng-bind="vendor.name"></h3>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == vendor.user._id))">
 		<a class="btn btn-primary" href="/#!/vendors/{{vendor._id}}/edit">

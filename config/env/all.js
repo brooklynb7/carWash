@@ -6,6 +6,14 @@ module.exports = {
 		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
+	roles: {
+		all: '*',
+		user: 'user',
+		vendor: 'vendor',
+		service: 'service',
+		admin: 'admin',
+		super: 'super'	
+	},
 	port: process.env.PORT || 9021,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
