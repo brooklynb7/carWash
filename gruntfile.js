@@ -181,17 +181,12 @@ module.exports = function(grunt) {
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 
-	//Production server task.
-	grunt.registerTask('production', ['env:production', 'build', 'stop', 'start']);
+	
+	grunt.registerTask('web-prod', ['env:production', 'build', 'forever:server:stop', 'forever:server:start']);
+	grunt.registerTask('wechat-prod', ['env:production', 'forever:server-wechat-api:stop','forever:server-wechat-api:start']);
 
 	//Development server task
 	grunt.registerTask('dev', ['lint', 'stop', 'start']);
-
-	//Start all forever servers
-	grunt.registerTask('start', ['forever:server:start']);
-
-	//Stop all forever servers
-	grunt.registerTask('stop', ['forever:server:stop']);
 
 	// Default task(s).
 	grunt.registerTask('default', ['lint', 'concurrent:default']);
