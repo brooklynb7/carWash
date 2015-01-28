@@ -6,24 +6,73 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Vendor = mongoose.model('Vendor'),
+	User = mongoose.model('User'),
+	async = require('async'),
 	_ = require('lodash');
 
 /**
  * Create a Vendor
  */
 exports.create = function(req, res) {
-	var vendor = new Vendor(req.body);
-	vendor.user = req.user;
+	var userId = req.body.userId;
+	if(!userId) {
+		return  errorHandler.responseError(400, '请填写用户ID', res);
+	}
+	delete req.body.userId;
 
-	vendor.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
+	async.parallel([
+		function(callback){
+			User.findOne({
+				userId: parseInt(userId)
+			}, function(err, user) {
+				callback(err, user);
 			});
+		},	
+		function(callback){
+			Vendor.findOne({
+				'user.userId': userId
+			}, function(err, vendor){
+				callback(err, vendor);
+			});
+		}
+	], function(err, results) {
+		if(err) {			
+			return  errorHandler.responseError(400, err, res);		
 		} else {
-			res.jsonp(vendor);
+			var user = results[0];
+			var vendor = results[1];
+
+			if (!user) {				
+				return  errorHandler.responseError(400, '该用户id不存在', res);
+			} else if ( vendor ) {
+				var message = '该用户已经是商家。';
+
+				if(vendor.approveStatus === 0) {
+					message += '该用户已经申请为商家， 待审批中。';
+				} else if(vendor.approveStatus === -1) {
+					message += '该用户的商家申请已被拒绝， 请联系管理员。';
+				}
+
+				return errorHandler.responseError(400, message, res);
+			} else {
+				vendor = new Vendor(req.body);
+				vendor.user = user;
+
+				vendor.save(function(err) {
+					if (err) {
+						return  errorHandler.responseError(400, err, res);
+					} else {
+						res.jsonp(vendor);
+					}
+				});
+			}
 		}
 	});
+};
+
+exports.apply = function(req, res){
+	var vendor = new Vendor(req.body);
+	vendor.user = req.user;
 };
 
 /**

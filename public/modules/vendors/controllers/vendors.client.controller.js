@@ -9,7 +9,14 @@ angular.module('vendors').controller('VendorsController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Vendor object
 			var vendor = new Vendors ({
-				name: this.name
+				name: this.name,
+				address: this.address,
+				area: this.area,
+				workingTime: this.workingTime,
+				storeSize: this.storeSize,
+				phone: this.phone,
+				serviceIntro: this.serviceIntro,
+				userId: this.userId
 			});
 
 			// Redirect after save

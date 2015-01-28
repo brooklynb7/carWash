@@ -74,19 +74,31 @@ var VendorSchema = new Schema({
 	serviceIntro: {
 		type: String,
 		default: '',
-		trim: true
+		trim: true,
+		required: '请填写服务介绍'
+	},
+	createdBy:{
+		
 	},
 	created: {
 		type: Date,
 		default: Date.now
 	},
+	approveAt: {
+		type: Date
+	},
 	approveStatus: {
 		type: Number,
 		default: 0
 	},
-	approvedBy: {
+	approveBy: {
 		type:Schema.ObjectId,
 		ref: 'User'
+	},
+	approveText: {
+		type: String,
+		trim: true,
+		default: ''
 	},
 	user: {
 		type: Schema.ObjectId,

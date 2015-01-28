@@ -7,6 +7,10 @@ angular.module('vendors').factory('Vendors', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
+			},			
+			apply: {
+				method: 'POST',
+				url: 'vendors/apply'
 			}
 		});
 	}

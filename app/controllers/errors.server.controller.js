@@ -32,11 +32,19 @@ exports.getErrorMessage = function(err) {
 			default:
 				message = 'Something went wrong';
 		}
-	} else {
+	} else if(err.errors){
 		for (var errName in err.errors) {
 			if (err.errors[errName].message) message = err.errors[errName].message;
 		}
+	} else if(err.message) {
+		message = err.message;
 	}
 
 	return message;
+};
+
+exports.responseError = function(errorCode, errorMsg, res){
+	return res.status(errorCode).send({
+		message: this.getErrorMessage(errorMsg) || errorMsg
+	});
 };

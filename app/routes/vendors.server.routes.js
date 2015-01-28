@@ -8,14 +8,17 @@ module.exports = function(app) {
 
 	// Vendors Routes
 	app.route('/vendors')
-		.get(users.requiresLogin, users.hasAuthorization([config.roles.super]), vendors.list)
-		.post(users.requiresLogin, vendors.create);
+		.get(users.requiresLogin, users.hasAuthorization([config.roles.admin]), vendors.list)
+		.post(users.requiresLogin, users.hasAuthorization([config.roles.admin]), vendors.create);
 
-	app.route('/vendors/:vendorId')
+	app.route('/vendors/:verndorSysId')
 		.get(vendors.read)
 		.put(users.requiresLogin, vendors.hasAuthorization, vendors.update)
-		.delete(users.requiresLogin, vendors.hasAuthorization, vendors.delete);
+		.delete(users.requiresLogin, users.hasAuthorization([config.roles.admin]), vendors.delete);
+
+	app.route('/vendors/apply')
+		.post(users.requiresLogin, vendors.apply);
 
 	// Finish by binding the Vendor middleware
-	app.param('vendorId', vendors.vendorByID);
+	app.param('verndorSysId', vendors.vendorByID);
 };
