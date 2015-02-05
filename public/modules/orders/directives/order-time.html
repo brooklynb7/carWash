@@ -7,5 +7,6 @@
 <select data-ng-model="orderTime" 
 		data-ng-options="m.id as m.value for m in orderTimeOptions"
 		class="display-inline-block width-auto form-control" 
+		data-ng-change="changeOrderTime()"
 		id="orderTime">
 </select>

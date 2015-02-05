@@ -4,16 +4,16 @@
 angular.module('orders').controller('OrdersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Orders',
 	function($scope, $stateParams, $location, Authentication, Orders) {
 		$scope.authentication = Authentication;
-		$scope.formControl = {};
-		$scope.washType = 1;
+		$scope.order = {};
+		$scope.order.washType = 1;
 		// Create new Order
 		$scope.create = function() {			
 			// Create new Order object
 			var order = new Orders({
-				name: this.name,
-				mobile: this.mobile,
-				washType: this.washType,
-				orderTime: $scope.formControl.getOrderDateTime()
+				name: this.order.name,
+				mobile: this.order.mobile,
+				washType: this.order.washType,
+				orderTime: this.order.orderTime
 			});
 
 			// Redirect after save
@@ -21,10 +21,9 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 				$location.path('orders/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
-				$scope.mobile = '';
-				$scope.washType = 1;
-				$scope.formControl.resetOrderDateTime();
+				$scope.order.name = '';
+				$scope.order.mobile = '';
+				$scope.order.washType = 1;
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

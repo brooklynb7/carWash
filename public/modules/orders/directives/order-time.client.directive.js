@@ -47,10 +47,15 @@ angular.module('orders').directive('orderTime', [
 						scope.orderTimeOptions = orderTimeOptions;
 					}
 					scope.orderTime = scope.orderTimeOptions[0].id;
+					scope.setOrderDateTime();
 				};
 
-				scope.getOrderDateTime = function () {
-					return moment(moment().add(scope.orderDate, 'd').format('YYYY-MM-DD')).add(scope.orderTime*30,'m').format('x');
+				scope.changeOrderTime = function(){
+					scope.setOrderDateTime();
+				};
+
+				scope.setOrderDateTime = function () {
+					scope.order.orderTime = moment(moment().add(scope.orderDate, 'd').format('YYYY-MM-DD')).add(scope.orderTime*30,'m').format('x');
 				};
 
 				scope.resetOrderDateTime = function () {						
@@ -59,6 +64,7 @@ angular.module('orders').directive('orderTime', [
 				};
 
 				scope.resetOrderDateTime();
+				scope.setOrderDateTime();
 			}
 		};
 	}

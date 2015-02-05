@@ -68,3 +68,7 @@
 .display-inline-block{
 	display: inline-block !important;
 }
+a.list-group-item:hover, 
+a.list-group-item:focus{
+	border-left: 4px solid #337ab7;
+}

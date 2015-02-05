@@ -10,15 +10,6 @@ angular.module('orders').directive('orderForm', [
 				control: '='
 			},
 			link: function(scope, element, attrs){
-				scope.internalControl = scope.control || {};
-
-				scope.internalControl.getOrderDateTime = function(){
-					return scope.$$childTail.getOrderDateTime();
-				};
-
-				scope.internalControl.resetOrderDateTime = function(){
-					return scope.$$childTail.resetOrderDateTime();
-				};
 			}
 		};
 	}
