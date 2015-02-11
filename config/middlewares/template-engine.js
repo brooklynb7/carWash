@@ -1,9 +1,9 @@
 'use strict';
 
-var config = require('./config'),
+var config = require('../config'),
 	consolidate = require('consolidate');
 
-exports.set = function(app) {
+module.exports = function(app) {
 	// Set swig as the template engine
 	app.engine('server.view.html', consolidate[config.templateEngine]);
 

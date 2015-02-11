@@ -1,11 +1,9 @@
 'use strict';
 
 // Config HTTP Error Handling
-angular.module('users').config(['$httpProvider',
-	function($httpProvider) {
+angular.module('users').config(function($httpProvider) {
 		// Set the httpProvider "not authorized" interceptor
-		$httpProvider.interceptors.push(['$q', '$location', 'Authentication',
-			function($q, $location, Authentication) {
+		$httpProvider.interceptors.push(function($q, $location, Authentication) {
 				return {
 					responseError: function(rejection) {
 						switch (rejection.status) {
@@ -24,14 +22,10 @@ angular.module('users').config(['$httpProvider',
 						return $q.reject(rejection);
 					}
 				};
-			}
-		]);	
-	}
-]).run(['Menus','USER_ROLES',
-	function(Menus, USER_ROLES) {
+			});	
+	}).run(function(Menus, USER_ROLES) {
 
 		Menus.addMenuItem('topbar', '用户管理', 'users', 'dropdown', '/users(/create)?', false, [USER_ROLES.super], 99);
 		Menus.addSubMenuItem('topbar', 'users', '用户列表', 'users');
 		//Menus.addSubMenuItem('topbar', 'users', '新建用户', 'users/create');
-	}
-]);
+	});

@@ -1,8 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('orders').config(['$stateProvider', 'USER_ROLES',
-	function($stateProvider, USER_ROLES) {
+angular.module('orders').config(function($stateProvider, USER_ROLES) {
 		// Orders state routing
 		$stateProvider.
 		state('listOrders', {
@@ -25,5 +24,4 @@ angular.module('orders').config(['$stateProvider', 'USER_ROLES',
 			templateUrl: 'modules/orders/views/edit-order.client.view.html',
 			authorizedRoles: [USER_ROLES.service]
 		});
-	}
-]);
+	});

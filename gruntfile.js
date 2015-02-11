@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {
 		serverViews: ['app/views/**/*.*'],
-		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js', 'util/**/*.js'],
+		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
 		clientCSS: ['public/modules/**/*.css'],
@@ -110,6 +110,17 @@ module.exports = function(grunt) {
 				files: {
 					'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
 				}
+			},
+			dev: {
+				options: {
+					add: false,
+					remove: true,
+					singleQuotes: true,
+				},
+				files: [{
+					expand: true,
+					src: '<%= applicationJavaScriptFiles %>'
+				}]
 			}
 		},
 		concurrent: {
@@ -190,9 +201,6 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('web-start', ['forever:server:stop', 'forever:server:start']);
 	grunt.registerTask('wechat-start', ['forever:server-wechat-api:stop','forever:server-wechat-api:start']);
-	
-	//Development server task
-	grunt.registerTask('dev', ['lint', 'stop', 'start']);
 
 	// Default task(s).
 	grunt.registerTask('default', ['lint', 'concurrent:default']);
@@ -211,4 +219,7 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+	//Remove ngAnnotate
+	grunt.registerTask('remove-ngAnnotate', ['loadConfig', 'ngAnnotate:dev']);
 };

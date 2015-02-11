@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('core').filter('hasIntersection', [
-	function() {
+angular.module('core').filter('hasIntersection', function() {
 		return function(array1, array2) {
 			for (var index1 in array1) {
 				for (var index2 in array2) {
@@ -12,9 +11,7 @@ angular.module('core').filter('hasIntersection', [
 			}
 			return false;
 		};
-	}
-]).filter('hasValue', [
-	function() {
+	}).filter('hasValue', function() {
 		return function(array, value) {
 			for (var index in array) {
 				if (array[index] === value) {
@@ -23,5 +20,4 @@ angular.module('core').filter('hasIntersection', [
 			}
 			return false;
 		};
-	}
-]);
+	});

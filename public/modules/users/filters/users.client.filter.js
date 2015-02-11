@@ -21,8 +21,7 @@ var getRoleText = function(role) {
 	return text;
 };
 
-angular.module('users').filter('getRolesText', [
-	function() {
+angular.module('users').filter('getRolesText', function() {
 		return function(list) {
 			var testList = [];
 			_.each(list, function(role) {
@@ -30,5 +29,4 @@ angular.module('users').filter('getRolesText', [
 			});
 			return testList.join(',');
 		};
-	}
-]);
+	});

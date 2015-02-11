@@ -1,22 +1,17 @@
 'use strict';
 
-angular.module('orders').filter('getDaysAfterBearingText', [
-	function() {
+angular.module('orders').filter('getDaysAfterBearingText', function() {
 		return function(value, list) {
 			var obj = _.find(list, function(obj) {
 				return parseInt(obj.id) === parseInt(value);
 			});
 			return obj ? obj.value : '';
 		};
-	}
-]).filter('getHasFeverText', [
-	function() {
+	}).filter('getHasFeverText', function() {
 		return function(hasFever) {
 			return hasFever ? '是' : '否';
 		};
-	}
-]).filter('getOrderStatusText', [
-	function() {
+	}).filter('getOrderStatusText', function() {
 		return function(status) {
 			var text = '';
 			switch (status) {
@@ -37,5 +32,4 @@ angular.module('orders').filter('getDaysAfterBearingText', [
 			}
 			return text;
 		};
-	}
-]);
+	});

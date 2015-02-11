@@ -1,8 +1,7 @@
 'use strict';
 
 // Authentication service for user variables
-angular.module('users').factory('Authentication', ['hasIntersectionFilter',
-	function(hasIntersectionFilter) {
+angular.module('users').factory('Authentication', function(hasIntersectionFilter) {
 		var _this = this;
 
 		var authService = {
@@ -22,5 +21,4 @@ angular.module('users').factory('Authentication', ['hasIntersectionFilter',
 		};
 
 		return authService;
-	}
-]);
+	});

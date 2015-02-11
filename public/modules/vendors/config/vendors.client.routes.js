@@ -1,8 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('vendors').config(['$stateProvider', 'USER_ROLES', 
-	function($stateProvider, USER_ROLES) {
+angular.module('vendors').config(function($stateProvider, USER_ROLES) {
 		// Vendors state routing
 		$stateProvider.
 		state('applyVendor', {
@@ -29,5 +28,4 @@ angular.module('vendors').config(['$stateProvider', 'USER_ROLES',
 			templateUrl: 'modules/vendors/views/edit-vendor.client.view.html',
 			authorizedRoles: [USER_ROLES.admin]
 		});
-	}
-]);
+	});

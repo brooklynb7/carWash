@@ -1,9 +1,7 @@
 'use strict';
 
 //Menu service used for managing  menus
-angular.module('core').service('Menus', [
-
-	function() {
+angular.module('core').service('Menus', function() {
 		// Define a set of default roles
 		this.defaultRoles = ['*'];
 
@@ -162,5 +160,4 @@ angular.module('core').service('Menus', [
 
 		//Adding the topbar menu
 		this.addMenu('topbar');
-	}
-]);
+	});

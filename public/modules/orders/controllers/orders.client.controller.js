@@ -1,8 +1,7 @@
 'use strict';
 
 // Orders controller
-angular.module('orders').controller('OrdersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Orders',
-	function($scope, $stateParams, $location, Authentication, Orders) {
+angular.module('orders').controller('OrdersController', function($scope, $stateParams, $location, Authentication, Orders) {
 		$scope.authentication = Authentication;
 		$scope.order = {};
 		$scope.order.washType = 1;
@@ -69,5 +68,4 @@ angular.module('orders').controller('OrdersController', ['$scope', '$stateParams
 				orderId: $stateParams.orderId
 			});
 		};
-	}
-]);
+	});

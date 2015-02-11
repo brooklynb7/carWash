@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('orders').directive('orderForm', [
-	function() {
+angular.module('orders').directive('orderForm', function() {
 		return {
 			templateUrl: './modules/orders/directives/order-form.html',
 			restrict: 'E',
@@ -12,5 +11,4 @@ angular.module('orders').directive('orderForm', [
 			link: function(scope, element, attrs){
 			}
 		};
-	}
-]);
+	});

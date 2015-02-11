@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('orders').directive('orderTime', [
-	function() {
+angular.module('orders').directive('orderTime', function() {
 		return {
 			templateUrl: './modules/orders/directives/order-time.html',
 			restrict: 'E',
@@ -67,5 +66,4 @@ angular.module('orders').directive('orderTime', [
 				scope.setOrderDateTime();
 			}
 		};
-	}
-]);
+	});

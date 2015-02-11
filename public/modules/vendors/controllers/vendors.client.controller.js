@@ -1,8 +1,7 @@
 'use strict';
 
 // Vendors controller
-angular.module('vendors').controller('VendorsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vendors',
-	function($scope, $stateParams, $location, Authentication, Vendors) {
+angular.module('vendors').controller('VendorsController', function($scope, $stateParams, $location, Authentication, Vendors) {
 		$scope.authentication = Authentication;
 
 		// Create new Vendor
@@ -69,5 +68,4 @@ angular.module('vendors').controller('VendorsController', ['$scope', '$statePara
 				vendorId: $stateParams.vendorId
 			});
 		};
-	}
-]);
+	});
