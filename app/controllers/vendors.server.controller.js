@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var userId = req.body.userId;
 	if(!userId) {
-		return  errorHandler.responseError(400, '请填写用户ID', res);
+		return errorHandler.responseError(400, '请填写用户ID', res);
 	}
 	delete req.body.userId;
 
@@ -50,7 +50,7 @@ exports.create = function(req, res) {
 				if(vendor.approveStatus === 0) {
 					message += '该用户已经申请为商家， 待审批中。';
 				} else if(vendor.approveStatus === -1) {
-					message += '该用户的商家申请已被拒绝， 请联系管理员。';
+					message += '该用户的商家申请已被拒绝，请联系管理员。';
 				}
 
 				return errorHandler.responseError(400, message, res);

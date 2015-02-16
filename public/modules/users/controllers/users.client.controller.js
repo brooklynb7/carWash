@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('users').controller('UsersController', function($scope, $stateParams, $location, Authentication, Orders) {
-		$scope.authentication = Authentication;
+angular.module('users').controller('UsersController', function($scope, $stateParams, $location, Authentication, Users) {
+	$scope.authentication = Authentication;
 
-		$scope.find = function() {
-			$scope.users = Orders.query();
-		};
+	$scope.find = function() {
+		$scope.users = Users.query();
+	};
 
-	});
+});

@@ -26,6 +26,7 @@ exports.signup = function(req, res) {
 
 	// Then save the user 
 	user.save(function(err) {
+		console.log(err);
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -69,7 +70,8 @@ exports.signin = function(req, res, next) {
 					}
 				});
 			}
-		})(req, res, next);
+		}
+	)(req, res, next);
 };
 
 exports.signinWechat = function(req, res, next) {

@@ -6,6 +6,8 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	autoIncrement = require('mongoose-auto-increment'),
+	config = require('../../config/config'),
+	_ = require('lodash'),
 	crypto = require('crypto');
 
 /**
@@ -44,13 +46,13 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true,
 		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		validate: [validateLocalStrategyProperty, '请填写邮箱'],
+		match: [/.+\@.+\..+/, '请填写正确的邮箱']
 	},
 	username: {
 		type: String,
 		unique: 'testing error message',
-		required: 'Please fill in a username',
+		required: '请填写用户名',
 		trim: true
 	},
 	password: {
@@ -75,9 +77,9 @@ var UserSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'vendor' ,'service' ,'admin', 'super']
+			enum: _.values(config.roles)
 		}],
-		default: ['user']
+		default: [config.roles.user]
 	},
 	userType: {
 		type: Number,
