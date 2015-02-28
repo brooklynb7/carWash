@@ -3,6 +3,7 @@
 var should = require('should'),
 	request = require('supertest'),
 	app = require('../../server'),
+	config = require('../../config/config'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	Order = mongoose.model('Order'),
@@ -32,13 +33,15 @@ describe('Order CRUD tests', function() {
 			email: 'test@test.com',
 			username: credentials.username,
 			password: credentials.password,
-			provider: 'local'
+			provider: 'local',
+			roles:[config.roles.service]
 		});
 
 		// Save a user to the test db and create new Order
 		user.save(function() {
 			order = {
-				name: 'Order Name'
+				name: 'Order Name',
+				mobile: '123'
 			};
 
 			done();
@@ -114,7 +117,7 @@ describe('Order CRUD tests', function() {
 					.expect(400)
 					.end(function(orderSaveErr, orderSaveRes) {
 						// Set message assertion
-						(orderSaveRes.body.message).should.match('Please fill Order name');
+						(orderSaveRes.body.message).should.match('请填写您的姓名');
 						
 						// Handle Order save error
 						done(orderSaveErr);
@@ -163,7 +166,7 @@ describe('Order CRUD tests', function() {
 			});
 	});
 
-	it('should be able to get a list of Orders if not signed in', function(done) {
+	it('should be able to get a list of Orders if signed in as a role of service', function(done) {
 		// Create new Order model instance
 		var orderObj = new Order(order);
 

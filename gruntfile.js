@@ -219,6 +219,8 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+	grunt.registerTask('test-mocha', ['env:test', 'mochaTest']);
+	grunt.registerTask('test-karma', ['env:test', 'karma:unit']);
 
 	//Remove ngAnnotate
 	grunt.registerTask('remove-ngAnnotate', ['loadConfig', 'ngAnnotate:dev']);

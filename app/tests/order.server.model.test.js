@@ -30,6 +30,7 @@ describe('Order Model Unit Tests:', function() {
 		user.save(function() { 
 			order = new Order({
 				name: 'Order Name',
+				mobile: '123',
 				user: user
 			});
 
